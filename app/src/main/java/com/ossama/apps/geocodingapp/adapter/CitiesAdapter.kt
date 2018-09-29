@@ -14,7 +14,7 @@ import com.ossama.apps.geocodingapp.model.entity.City
 
 class CitiesAdapter(private var cities: List<City>) : RecyclerView.Adapter<CitiesAdapter.CitiesListViewHolder>(), Filterable {
 
-    private var filteredCities: List<City> = cities
+    private lateinit var filteredCities: List<City>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CitiesListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_city, parent, false)
@@ -30,6 +30,7 @@ class CitiesAdapter(private var cities: List<City>) : RecyclerView.Adapter<Citie
         holder.cityName.text = city.cityName
 
         // Set the city geolocation
+        // TODO Change the string concatenation below and make it in the strings file instead
         holder.cityGeoLocation.text = "${city.latitude}, ${city.longitude}"
 
         // Set the city's country code
@@ -37,6 +38,7 @@ class CitiesAdapter(private var cities: List<City>) : RecyclerView.Adapter<Citie
     }
 
     fun setCities(cities: List<City>) {
+        this.cities = cities
         this.filteredCities = cities
         notifyDataSetChanged()
     }
