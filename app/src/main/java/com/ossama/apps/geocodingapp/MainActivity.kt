@@ -43,8 +43,17 @@ class MainActivity : AppCompatActivity() {
             setSearchableInfo(searchManager.getSearchableInfo(componentName))
             // Make the searchView expand on the whole toolbar
             this.maxWidth = Integer.MAX_VALUE
-        }
 
+            // Delegate the search to the responsible fragment
+            delegateSearch(this)
+        }
         return true
+    }
+
+    private fun delegateSearch(searchView: SearchView) {
+        val fragment = supportFragmentManager.findFragmentById(R.id.frame_container)
+        if (fragment is ICitySearchingView) {
+            return fragment.search(searchView)
+        }
     }
 }

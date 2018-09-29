@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.SearchView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,6 +53,24 @@ class CitySearchingViewImpl : Fragment(), ICitySearchingView {
     override fun onDestroy() {
         presenter.detachView()
         super.onDestroy()
+    }
+
+    // Handle the the user's searching and delegate to the adapter to do the filtering
+    override fun search(searchView: SearchView) {
+        // listening to search query text change
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                // filter recycler view when query submitted
+                adapter.filter.filter(query)
+                return false
+            }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                // filter recycler view when text is changed
+                adapter.filter.filter(query)
+                return false
+            }
+        })
     }
 
     override fun showLoadingView() {
