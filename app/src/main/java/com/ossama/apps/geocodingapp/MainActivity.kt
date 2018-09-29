@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
 
         // Setting the toolbar along with the back navigation
         setToolbar()
+
+        addFragment()
     }
 
     private fun setToolbar() {
@@ -23,6 +25,12 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener { onBackPressed() }
+    }
+
+    private fun addFragment() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.add(R.id.frame_container, CitySearchingViewImpl.newInstance())
+        fragmentTransaction.commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
