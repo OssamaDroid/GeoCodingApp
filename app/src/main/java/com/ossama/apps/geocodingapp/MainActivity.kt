@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         // Setting the toolbar along with the back navigation
         setToolbar()
 
+        // Adding the cities fragment
         addFragment()
     }
 
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun addFragment() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.frame_container, CitySearchingViewImpl.newInstance())
+        fragmentTransaction.replace(R.id.frame_container, CitySearchingViewImpl.newInstance())
         fragmentTransaction.commit()
     }
 
