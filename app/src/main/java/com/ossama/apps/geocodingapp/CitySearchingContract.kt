@@ -12,7 +12,7 @@ interface ICitySearchingPresenter : BasePresenter<ICitySearchingView> {
 
 interface ICitySearchingView : BaseView {
     fun showLoadingView()
-    fun showCities(schools: List<City>)
+    fun showCities(cities: List<City>)
     fun showEmptyState()
     fun showError()
     fun getViewContext(): Context?
