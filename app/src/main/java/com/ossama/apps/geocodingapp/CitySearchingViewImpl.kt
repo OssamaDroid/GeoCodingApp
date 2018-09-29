@@ -20,7 +20,7 @@ class CitySearchingViewImpl : Fragment(), ICitySearchingView {
         CitySearchingPresenterImpl()
     }
     private val adapter: CitiesAdapter by lazy {
-        CitiesAdapter(ArrayList())
+        CitiesAdapter(activity!!, ArrayList())
     }
 
     companion object {

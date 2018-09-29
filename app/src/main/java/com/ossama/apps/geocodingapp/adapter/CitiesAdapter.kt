@@ -1,5 +1,6 @@
 package com.ossama.apps.geocodingapp.adapter
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,7 @@ import com.ossama.apps.geocodingapp.R
 import com.ossama.apps.geocodingapp.model.entity.City
 
 
-class CitiesAdapter(private var cities: List<City>) : RecyclerView.Adapter<CitiesAdapter.CitiesListViewHolder>(), Filterable {
+class CitiesAdapter(private var context: Context, private var cities: List<City>) : RecyclerView.Adapter<CitiesAdapter.CitiesListViewHolder>(), Filterable {
 
     private lateinit var filteredCities: List<City>
 
@@ -30,8 +31,7 @@ class CitiesAdapter(private var cities: List<City>) : RecyclerView.Adapter<Citie
         holder.cityName.text = city.cityName
 
         // Set the city geolocation
-        // TODO Change the string concatenation below and make it in the strings file instead
-        holder.cityGeoLocation.text = "${city.latitude}, ${city.longitude}"
+        holder.cityGeoLocation.text = context.getString(R.string.city_geo_location, city.latitude, city.longitude)
 
         // Set the city's country code
         holder.cityCountryCode.text = city.countryCode
