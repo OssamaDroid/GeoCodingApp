@@ -15,8 +15,12 @@ import kotlinx.android.synthetic.main.fragment_list_cities.*
 
 class CitySearchingViewImpl : Fragment(), ICitySearchingView {
 
-    private lateinit var presenter: ICitySearchingPresenter
-    private lateinit var adapter: CitiesAdapter
+    private val presenter: ICitySearchingPresenter by lazy {
+        CitySearchingPresenterImpl()
+    }
+    private val adapter: CitiesAdapter by lazy {
+        CitiesAdapter(ArrayList())
+    }
 
     companion object {
 
@@ -32,9 +36,6 @@ class CitySearchingViewImpl : Fragment(), ICitySearchingView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        presenter = CitySearchingPresenterImpl()
-        adapter = CitiesAdapter(ArrayList())
 
         presenter.attachView(this)
         presenter.getCities()
