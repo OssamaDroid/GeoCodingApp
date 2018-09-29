@@ -54,10 +54,7 @@ class CitiesAdapter(private var cities: List<City>) : RecyclerView.Adapter<Citie
 
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             val typedText = constraint.toString()
-            filteredCities = when {
-                typedText.isBlank() -> cities
-                else -> cities.filter { it.cityName!!.startsWith(typedText) }.toList()
-            }
+            filteredCities = filterCitiesByName(cities, typedText)
 
             val filterResults = FilterResults()
             filterResults.values = filteredCities
