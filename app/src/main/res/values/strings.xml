@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GeoCodingApp</string>
+    <string name="city">City (e.g. Hamburg)</string>
 </resources>
